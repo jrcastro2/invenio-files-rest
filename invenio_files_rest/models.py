@@ -602,6 +602,7 @@ class BucketTag(db.Model):
         db.ForeignKey(Bucket.id, ondelete="CASCADE"),
         default=uuid.uuid4,
         primary_key=True,
+        index=True,
     )
 
     key = db.Column(db.String(255), primary_key=True)
@@ -972,6 +973,7 @@ class ObjectVersion(db.Model, Timestamp):
         db.ForeignKey(Bucket.id, ondelete="RESTRICT"),
         default=uuid.uuid4,
         nullable=False,
+        index=True,
     )
     """Bucket identifier."""
 
@@ -1397,6 +1399,7 @@ class ObjectVersionTag(db.Model):
         db.ForeignKey(ObjectVersion.version_id, ondelete="CASCADE"),
         default=uuid.uuid4,
         primary_key=True,
+        index=True,
     )
     """Object version id."""
 
@@ -1508,6 +1511,7 @@ class MultipartObject(db.Model, Timestamp):
     bucket_id = db.Column(
         UUIDType,
         db.ForeignKey(Bucket.id, ondelete="RESTRICT"),
+        index=True,
     )
     """Bucket identifier."""
 
